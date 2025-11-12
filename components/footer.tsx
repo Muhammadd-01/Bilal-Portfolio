@@ -49,8 +49,8 @@ export function Footer() {
     { icon: Instagram, label: "Instagram", href: "https://instagram.com", color: "hover:text-pink-500" },
     { icon: Facebook, label: "Facebook", href: "https://facebook.com", color: "hover:text-blue-600" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com", color: "hover:text-blue-400" },
-    { icon: Mail, label: "Email", href: "mailto:bilalkhan.designs@gmail.com", color: "hover:text-purple-500" },
-    { icon: Smartphone, label: "WhatsApp", href: "https://wa.me/1234567890", color: "hover:text-green-500" },
+    { icon: Mail, label: "Email", href: "mailto:Khanbilalnasir21@gmail.com", color: "hover:text-purple-500" },
+    { icon: Smartphone, label: "WhatsApp", href: "https://wa.me/03191989377", color: "hover:text-green-500" },
   ]
 
   return (
@@ -112,8 +112,8 @@ export function Footer() {
           >
             <h4 className="text-white font-semibold mb-4">Contact</h4>
             <div className="text-sm text-gray-400 space-y-1">
-              <p>Email: bilalkhan.designs@gmail.com</p>
-              <p>WhatsApp: +1 (234) 567-8900</p>
+              <p>Email: Khanbilalnasir21@gmail.com</p>
+              <p>WhatsApp: +92 (319) 198-9377</p>
             </div>
           </motion.div>
         </div>

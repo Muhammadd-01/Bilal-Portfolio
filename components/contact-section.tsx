@@ -69,7 +69,7 @@ export function ContactSection() {
               </div>
               <div>
                 <p className="text-gray-400 mb-1">Phone</p>
-                <p className="text-gray-300">0315-XXXXXXX</p>
+                <p className="text-gray-300">0319-1989377</p>
               </div>
             </div>
           </motion.div>
