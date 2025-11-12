@@ -5,11 +5,45 @@ import { Mail, Smartphone, Facebook, Instagram, Linkedin } from "lucide-react"
 import { useState, useEffect } from "react"
 
 export function Footer() {
-  const [currentTaglineIndex, setCurrentTaglineIndex] = useState(0)
+  const [displayedText, setDisplayedText] = useState("")
+  const [wordIndex, setWordIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const taglines = [
+    "Creative • Precise • Innovative",
+    "Design Excellence Daily",
+    "Your Vision, My Design",
+  ]
+
+  const typingSpeed = 80
+  const delayBetween = 3000 // 3 seconds delay after full display
+
+  useEffect(() => {
+    const currentWord = taglines[wordIndex]
+    let timeout: NodeJS.Timeout
+
+    if (!isDeleting && charIndex < currentWord.length) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.substring(0, charIndex + 1))
+        setCharIndex(charIndex + 1)
+      }, typingSpeed)
+    } else if (!isDeleting && charIndex === currentWord.length) {
+      timeout = setTimeout(() => setIsDeleting(true), delayBetween)
+    } else if (isDeleting && charIndex > 0) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentWord.substring(0, charIndex - 1))
+        setCharIndex(charIndex - 1)
+      }, typingSpeed / 2)
+    } else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false)
+      setWordIndex((prev) => (prev + 1) % taglines.length)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [charIndex, isDeleting, wordIndex])
 
   const currentYear = new Date().getFullYear()
-
-  const taglines = ["Creative • Precise • Innovative", "Design Excellence Daily", "Your Vision, My Design"]
 
   const socialLinks = [
     { icon: Instagram, label: "Instagram", href: "https://instagram.com", color: "hover:text-pink-500" },
@@ -18,13 +52,6 @@ export function Footer() {
     { icon: Mail, label: "Email", href: "mailto:bilalkhan.designs@gmail.com", color: "hover:text-purple-500" },
     { icon: Smartphone, label: "WhatsApp", href: "https://wa.me/1234567890", color: "hover:text-green-500" },
   ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTaglineIndex((prev) => (prev + 1) % taglines.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <footer className="border-t border-gray-800 py-12 px-4 bg-black/50">
@@ -35,27 +62,23 @@ export function Footer() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <div className="text-center mb-12 pb-6 border-b border-gray-800">
-          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h3 className="text-xl font-semibold text-white mb-2">Bilal Khan</h3>
-            <motion.p
-              className="text-gray-400 text-sm italic mb-2"
-              key={currentTaglineIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5 }}
-            >
-              "{taglines[currentTaglineIndex]}"
-            </motion.p>
-          </motion.div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand section */}
-          <motion.div initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }}>
+          {/* Brand section with typing animation */}
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-xl font-bold text-white mb-2">Bilal Khan</h3>
             <p className="text-gray-400 text-sm">Vector Design Artist</p>
+
+            {/* Typing Animation Line */}
+            <p className="text-gray-400 text-sm mt-3 min-h-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                {displayedText}
+              </span>
+              <span className="animate-pulse text-purple-400">|</span>
+            </p>
           </motion.div>
 
           {/* Quick links */}
