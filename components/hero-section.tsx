@@ -26,20 +26,16 @@ export function TypingAnimation({
     let timer: NodeJS.Timeout
 
     if (!isDeleting && displayedText.length < currentWord.length) {
-      // Typing forward
       timer = setTimeout(() => {
         setDisplayedText(currentWord.slice(0, displayedText.length + 1))
       }, speed)
     } else if (isDeleting && displayedText.length > 0) {
-      // Deleting backward
       timer = setTimeout(() => {
         setDisplayedText(currentWord.slice(0, displayedText.length - 1))
       }, speed / 2)
     } else if (!isDeleting && displayedText.length === currentWord.length) {
-      // Pause before deleting
       timer = setTimeout(() => setIsDeleting(true), delayBetweenWords)
     } else if (isDeleting && displayedText.length === 0) {
-      // Move to next word
       setIsDeleting(false)
       setIndex((prev) => (prev + 1) % words.length)
     }
@@ -117,33 +113,22 @@ export function HeroSection() {
         initial="hidden"
         animate="show"
       >
-        {/* Logo Animation */}
+        {/* Hero Image Circle Animation */}
         <motion.div
           variants={item}
-          className="mb-8 flex justify-center relative"
+          className="mb-12 flex justify-center relative"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300, damping: 10 }}
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              className="absolute w-48 h-48 rounded-full border-2 border-transparent"
-              style={{
-                backgroundImage:
-                  "conic-gradient(from 0deg, transparent, rgba(168, 85, 247, 0.8), transparent 80%)",
-                backgroundClip: "padding-box",
-              }}
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 4,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-          </div>
-
-          <div className="w-40 h-40 rounded-full border-2 border-gray-600 p-1 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center relative z-10">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center overflow-hidden shadow-2xl">
-              <div className="text-5xl font-bold text-white">BK</div>
+          {/* Rotating border */}
+          <div className="relative w-64 h-64 rounded-full flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 rounded-full border-[3px] border-transparent animate-spin-slow bg-gradient-to-tr from-transparent via-purple-500 to-transparent blur-sm opacity-80"></div>
+            <div className="absolute inset-[3px] rounded-full bg-gray-900 overflow-hidden flex items-center justify-center">
+              <motion.img
+                src="/BilalPic.jpeg"
+                alt="Bilal Khan"
+                className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110 rounded-full"
+              />
             </div>
           </div>
         </motion.div>
@@ -198,6 +183,8 @@ export function HeroSection() {
                   className={
                     i === 1
                       ? "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50"
+                      : i === 2
+                      ? "border-gray-600 text-gray-300 hover:text-white hover:border-white bg-transparent hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-white/20"
                       : "border-gray-600 text-gray-300 hover:text-white hover:border-white bg-transparent hover:bg-white/10 transition-all duration-300 shadow-lg hover:shadow-white/20"
                   }
                 >
@@ -208,6 +195,20 @@ export function HeroSection() {
           ))}
         </motion.div>
       </motion.div>
+
+      <style jsx>{`
+        @keyframes spin-slow {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 4s linear infinite;
+        }
+      `}</style>
     </section>
   )
 }
