@@ -145,7 +145,7 @@ export function ContactSection() {
           <h3 className="text-xl font-semibold text-white mb-4">Connect</h3>
           <div className="flex gap-6">
             {[
-              { name: "Instagram", url: "https://instagram.com" },
+              { name: "Instagram", url: "https://www.instagram.com/bilal_khan_531/?__pwa=1" },
               { name: "Behance", url: "https://behance.net" },
               { name: "Dribbble", url: "https://dribbble.com" },
             ].map((social) => (

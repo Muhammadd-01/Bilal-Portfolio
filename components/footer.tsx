@@ -46,7 +46,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Instagram, label: "Instagram", href: "https://instagram.com", color: "hover:text-pink-500" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/bilal_khan_531/?__pwa=1", color: "hover:text-pink-500" },
     { icon: Facebook, label: "Facebook", href: "https://facebook.com", color: "hover:text-blue-600" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com", color: "hover:text-blue-400" },
     { icon: Mail, label: "Email", href: "mailto:Khanbilalnasir21@gmail.com", color: "hover:text-purple-500" },
