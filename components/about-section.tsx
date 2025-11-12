@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
+import Image from "next/image"
+
+import { Image as LucideIcon } from "lucide-react" // temporary icon for now
 
 export function AboutSection() {
   const container = {
@@ -39,6 +42,7 @@ export function AboutSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-100px" }}
         >
+          {/* Header */}
           <motion.h2
             className="text-4xl md:text-5xl font-bold text-white mb-8 text-balance"
             initial={{ opacity: 0, x: -20 }}
@@ -49,6 +53,7 @@ export function AboutSection() {
             About
           </motion.h2>
 
+          {/* Intro Card */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,6 +65,29 @@ export function AboutSection() {
                 I'm Bilal Khan — a passionate vector design artist focused on crafting bold, precise, and creative
                 visuals. I turn concepts into high-quality digital art that stands out across every platform.
               </p>
+
+              {/* --- New Line Added Below --- */}
+              <p className="text-gray-400 text-md leading-relaxed mb-4">
+                Vector Design Artist at{" "}
+                <a
+                  href="https://nexovate-digital.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-white inline-flex items-center hover:text-purple-400 transition-colors"
+                >
+                  NexoVate Digital
+                  <Image
+                    src="/website-icon.png"
+                    alt="NexoVate Digital"
+                    width={24}
+                    height={24}
+                    className="ml-2 rounded-md object-contain"
+                  />
+                </a>
+              </p>
+
+              {/* --- End New Line --- */}
+
               <p className="text-gray-400 text-md leading-relaxed text-balance">
                 With over 5 years of experience, I specialize in creating vector illustrations, logos, branding assets,
                 and custom graphics that elevate brands and captivate audiences. I believe in combining technical
@@ -69,6 +97,7 @@ export function AboutSection() {
             </Card>
           </motion.div>
 
+          {/* Skills Section */}
           <div className="mb-8">
             <h3 className="text-2xl font-semibold text-white mb-6">Skills & Expertise</h3>
             <motion.div
