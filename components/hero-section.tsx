@@ -164,7 +164,7 @@ export function HeroSection() {
           {[
             { label: "View My Work", link: "#portfolio" },
             { label: "Get Connected", link: "#contact" },
-            { label: "View Resume", link: "/resume.pdf" },
+            { label: "View Resume", link: "/Bilal_Resume.pdf" },
           ].map((btn, i) => (
             <motion.div
               key={btn.label}
